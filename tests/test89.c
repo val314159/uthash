@@ -46,12 +46,12 @@ int netq_insert_node(netq_t **queue, netq_t *node)
 int main()
 {
     struct netq_t *nq = NULL;
-    int i;
+    size_t i;
 
     clock_time_t timestamps[] = { 300, 100, 200, 400, 500 };
 
     for (i = 0; i < sizeof(timestamps)/sizeof(clock_time_t); i++) {
-        struct netq_t *node = malloc(sizeof *node);
+        struct netq_t *node = (struct netq_t *)malloc(sizeof *node);
         memset(node, '\0', sizeof *node);
         node->t = timestamps[i];
 
@@ -61,4 +61,5 @@ int main()
     }
 
     dump_queue(nq);
+    return 0;
 }
